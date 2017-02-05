@@ -61,7 +61,7 @@ object ScalaBasics {
         i = i+1
       }
       min
-    }
+  }
 
   /**
    * Write a function that returns the minimum integer in the Array r.
@@ -75,10 +75,13 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minFor(r: Array[Int]): Int = ??? {
-    for {
-
+  def minFor(r: Array[Int]): Int = {
+    var minVal = r(0)
+    for (i <- Range(0, r.length-1)) {
+      val n = Array(minVal,r(i+1))
+      minVal = n.min
     }
+   minVal
   }
 
   /**
@@ -95,7 +98,17 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minRecursive(r: Array[Int]): Int = ???
+  def minRecursive(r: Array[Int]): Int = {
+    if (r.length == 1) {
+      r(0)
+    }
+    else if (r.min < r.slice(1, r.length).min) {
+    r(0)
+    }
+    else {
+      r.slice(1,r.length).min
+    }
+  }
 
   /**
    * Return the base 36 equivalent of the BitInt b.
@@ -153,14 +166,23 @@ object ScalaBasics {
    * @param s the potential palindrome
    * @return true if s is a palindrome; false otherwise
    */
-  def isPalindrome(s: String): Boolean = { //does not pass test - TO DO
-    val x = (s.toLowerCase).replaceAll("\\W","")
-    if (x == x.reverse){
+  def isPalindrome(s: String): Boolean = { //does not pass test - recreate with for comprehension
+    val x = s.toLowerCase.replaceAll("\\W", "")
+
+      if (x == x.reverse){
       true}
     else {
       false
     }
   }
+
+//    for (i <- Range())
+//    if (x == x.reverse){
+//      true}
+//    else {
+//      false
+
+
 
   /**
    * You don't have to complete this one as we've removed it from the list 
@@ -203,13 +225,17 @@ object ScalaBasics {
    * @param lines the lines of a text file
    * @return a map from words to the number of times that word was seen
    */
-  def wordCounter(lines: Array[String]): Map[String, Int] = ??? {
-    for (line <- lines){
-      val ln = line.split(" ")
-      for (word <- ln){
+  def wordCounter(lines: Array[String]): Map[String, Int] = ???
+//
+//    for (line <- lines){
+//      val ln = line.split(" ")
+//      for (word <- ln){
+//        if (m contains word) {
+//
+//        }
+//
+//      }
+//      }
 
-      }
-    }
-  }
 
 }
