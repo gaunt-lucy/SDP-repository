@@ -1,6 +1,7 @@
 package bc
 
 import vm.VirtualMachine
+import scala.runtime._
 
 /**
   * An exception representing an invalid bytecode. This can be used
