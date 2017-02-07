@@ -3,6 +3,9 @@ package bc
 import vm.VirtualMachine
 
 /**
+  * Small Change
+  */
+/**
   * An exception representing an invalid bytecode. This can be used
   * in any circumstance where a bytecode might be invalid.
   *
