@@ -3,7 +3,7 @@ package bc
 import vm.VirtualMachine
 
 /**
-  * Small Change
+  * big Change
   */
 /**
   * An exception representing an invalid bytecode. This can be used
