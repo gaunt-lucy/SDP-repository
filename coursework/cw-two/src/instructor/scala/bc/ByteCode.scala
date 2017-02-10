@@ -30,6 +30,12 @@ trait ByteCodeValues {
     * A map from bytecode names to a unique byte that represents them.
     */
   val bytecode = names.zip(1.to(names.length).map(_.toByte)).toMap
+  val codebyte = swap(bytecode)
+
+  def swap(map: Map[String, Byte]): Map[Byte, String] = {
+    map map {_.swap}
+  }
+
 }
 
 /**
@@ -51,6 +57,7 @@ trait ByteCode extends ByteCodeValues {
     * bytecode in [[ByteCodeValues]]
     */
   val code: Byte
+  val value: Int
 
   /**
     * Returns a new [[VirtualMachine]] after executing this bytecode operation.
@@ -59,4 +66,25 @@ trait ByteCode extends ByteCodeValues {
     * @return a new virtual machine
     */
   def execute(vm: VirtualMachine): VirtualMachine
+}
+
+class ByteCodeOp(bt: Byte, v: Int = 0) extends ByteCode {
+
+  val code: Byte = bt
+  val value: Int = v
+
+  override def execute(vm: VirtualMachine) = {
+    val op = codebyte(code)
+    op match {
+      case "iconst" => {
+            vm.push(value)
+        }
+      case "iadd" => {
+            (val x, _) = vm.pop()
+            (val y, _) = vm.pop()
+            vm.push(x + y)
+        }
+      }
+    }
+  }
 }
