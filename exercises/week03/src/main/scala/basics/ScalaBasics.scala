@@ -166,23 +166,14 @@ object ScalaBasics {
    * @param s the potential palindrome
    * @return true if s is a palindrome; false otherwise
    */
-  def isPalindrome(s: String): Boolean = { //does not pass test - recreate with for comprehension
+  def isPalindrome(s: String): Boolean = {
     val x = s.toLowerCase.replaceAll("\\W", "")
-
-      if (x == x.reverse){
-      true}
-    else {
-      false
+    val y = x.reverse
+    val m = for (i <- 0 until x.length by 1) yield {
+      if (x(i) != y(i)) false else true
     }
+    if (m contains false) false else true
   }
-
-//    for (i <- Range())
-//    if (x == x.reverse){
-//      true}
-//    else {
-//      false
-
-
 
   /**
    * You don't have to complete this one as we've removed it from the list 
@@ -225,17 +216,14 @@ object ScalaBasics {
    * @param lines the lines of a text file
    * @return a map from words to the number of times that word was seen
    */
-  def wordCounter(lines: Array[String]): Map[String, Int] = ???
-//
-//    for (line <- lines){
-//      val ln = line.split(" ")
-//      for (word <- ln){
-//        if (m contains word) {
-//
-//        }
-//
-//      }
-//      }
-
-
+  def wordCounter(lines: Array[String]): Map[String, Int] = {
+    var endMap = Map[String,Int]()
+    for (line <- lines){
+      val words = line.split(" ")
+      val groupedLine = words.groupBy(word => word).mapValues(_.size)
+      endMap = (endMap /: groupedLine) {case (map, (k,v)) =>
+        map + (k-> (v+map.getOrElse(k,0)))}
+    }
+    endMap
+  }
 }
