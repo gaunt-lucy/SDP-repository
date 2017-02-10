@@ -80,8 +80,8 @@ class ByteCodeOp(bt: Byte, v: Int = 0) extends ByteCode {
             vm.push(value)
         }
       case "iadd" => {
-            (val x, _) = vm.pop()
-            (val y, _) = vm.pop()
+            val (x, _) = vm.pop()
+            val (y, _) = vm.pop()
             vm.push(x + y)
         }
       }
