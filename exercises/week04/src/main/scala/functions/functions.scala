@@ -12,7 +12,12 @@ object Funcs {
     * @param ls : List[A] the list to process
     * @return A list containing all but the first element of ls
     */
-  def tail[A](ls: List[A]): List[A] = ???
+  def tail[A](ls: List[A]): List[A] = {
+    ls match {
+      case Nil => throw new IllegalArgumentException("List is empty.")
+      case x :: xs => xs
+    }
+  }
 
   /**
     * setHead replaces the first value in a list with a given value. If the
@@ -23,7 +28,12 @@ object Funcs {
     * @return a list whose head is `a' and whose tail is all but the first
     *         element of ls.
     **/
-  def setHead[A](ls: List[A], a: A): List[A] = ???
+  def setHead[A](ls: List[A], a: A): List[A] = {
+    ls match {
+      case Nil => a +: ls
+      case l :: ls => a +: ls
+    }
+  }
 
   /**
     * drop removes n elements from the given list. If n is greater than the
@@ -33,8 +43,15 @@ object Funcs {
     * @param n  : Int the number of elements to drop.
     * @return a list with the first n elements of ls removed, or an empty list.
     */
-  def drop[A](ls: List[A], n: Int): List[A] = ???
-
+  def drop[A](ls: List[A], n: Int): List[A] = ??? // TODO
+//      var count = n
+//      ls match {
+//        case l :: ls if (ls.size <= n && n >0) => ls.tail
+//        case l :: ls if (ls.size > n) => List[A]()
+//      }
+//    count = count - 1
+//    ls.drop(count)
+//    }
   /**
     * init takes a list and removes the last element.
     * Like tail, init(Nil) throws an IllegalArgumentException.
@@ -43,7 +60,9 @@ object Funcs {
     * @param ls : List[A] the list to be changed.
     * @return a list with the last element of ls removed.
     */
-  def init[A](ls: List[A]): List[A] = ???
+  def init[A](ls: List[A]): List[A] = {
+    ls.take(ls.length-1)
+  }
 
   // LIST FOLDING
 
@@ -58,7 +77,13 @@ object Funcs {
    * list and the cumulative value.
    * @return the final valued.
    */
-  def foldLeft[A, B](ls: List[A], z: B)(f: (B, A) => B): B = ???
+  def foldLeft[A, B](ls: List[A], z: B)(f: (B, A) => B): B = {
+    ls match {
+      case head::tail => f(z,foldLeft(tail,z)(head))
+      case Nil => z
+    }
+  }
+
 
   /**
     * Use your implementation of foldLeft to implement these functions:
