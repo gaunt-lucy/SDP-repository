@@ -1,20 +1,31 @@
+package week02
+
 import scala.reflect.runtime.{universe => ru}
 
-def getTypeTag [T: ru.TypeTag] (obj: T) = ru.typeTag[T]
+object reflectByName {
 
-def getClass (className: String) : Any = {
-	val c = className
-	println (Class.forName(c))
+  def getObj
 
+  def getTypeTag [T: ru.TypeTag] (obj: T) = ru.typeTag[T]
+
+  def getType(name: String): Type = {
+  val c = (Class.forName(name))
+  getTypeTag(c)
+  }
+
+  def getInterface (name: String): Array = {
+    val c = (Class.forName(name))
+    Class.getInterfaces(c)
+  }
 }
 
-def main (s: String) = {
-	val m = getClass(s)
-	println(getTypeTag(m))
 
-}
+//def main (s: String) = {
+//val m = getClass(s)
+//println(getType(m))
+//println (getInterface(m))
 
 
 //class Person (name: String)
 
-main ("java.lang.Int")
+//main

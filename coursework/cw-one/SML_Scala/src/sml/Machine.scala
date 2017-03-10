@@ -3,7 +3,7 @@ package sml
 /**
   * The machine language interpreter
   */
-case class Machine(labels: Labels, prog: Vector[Instruction]) {
+case class Machine(labels: Labels, prog: Vector[Instruction]){
   private final val NUMBER_OF_REGISTERS = 32
 
   // The program counter - start at zero
