@@ -25,6 +25,7 @@ class Translator(fileName: String) {
       if (fields.length > 0) {
         labels.add(fields(0))
 
+        // TODO Add reflection to make SML extensible
 //        val cls = Class.forName(fields(1).capitalize + "Instruction")
 //        val cons = cls.getConstructor()
 //        val clsParams = cons.getParameterTypes()
