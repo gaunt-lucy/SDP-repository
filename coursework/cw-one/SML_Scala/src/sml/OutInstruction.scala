@@ -8,9 +8,9 @@ case class OutInstruction(label: String, opcode: String, register: Int) extends 
   override def execute(m: Machine) =
     println(m.regs(register))
 
-//  override def toString(): String = {
-//  super.toString + " register " + register + " value is " + value + "\n"
-//}
+  override def toString(): String = {
+  super.toString + " register " + register + "\n"
+}
 }
 
   object OutInstruction {

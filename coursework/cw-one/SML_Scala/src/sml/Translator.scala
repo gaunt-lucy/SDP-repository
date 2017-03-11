@@ -24,6 +24,12 @@ class Translator(fileName: String) {
       val fields = line.split(" ")
       if (fields.length > 0) {
         labels.add(fields(0))
+
+//        val cls = Class.forName(fields(1).capitalize + "Instruction")
+//        val cons = cls.getConstructor()
+//        val clsParams = cons.getParameterTypes()
+
+
         fields(1) match {
           case ADD =>
             program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
@@ -37,6 +43,8 @@ class Translator(fileName: String) {
             program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
           case OUT =>
             program = program :+ OutInstruction(fields(0), fields(2).toInt)
+          case BNZ =>
+            program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
           case x =>
             println(s"Unknown instruction $x")
         }
