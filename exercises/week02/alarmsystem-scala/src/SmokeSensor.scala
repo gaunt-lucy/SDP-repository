@@ -1,19 +1,27 @@
 class SmokeSensor extends Sensor {
-  override def isTriggered: Boolean = false{
+  val counter = 0
+  var batteryPercent = 100.00
+
+  override def isTriggered: Boolean = {
     val r = 10
-    if (scala.random.util.nextInt(100) < r){
+    if (scala.util.Random.nextInt(100) < r){
       true
     }
+    else {
+      false
+    }
   }
-  override def getLocation: String = null{
-    "In the auditorium"
+  override def getLocation: String = {"In the auditorium"
   }
 
-  override def getSensorType: String = null{
+  override def getSensorType: String = {
     "Smoke sensor"
   }
 
-  override def getBatteryPercentage: Double = -1{
-
+  def getBatteryPercentage: Double = {
+    batteryPercent = batteryPercent-(batteryPercent*0.2)
+    batteryPercent
   }
+
+  override def getSensorCategory = "Hazard"
 }

@@ -7,14 +7,16 @@ object App {
 
   @throws[IOException]
   def main(args: Array[String]) {
-    val controlUnit: ControlUnit = new ControlUnit
+    val sensorFactory = new SensorFactory
+    val sensors = sensorFactory.getSensors
+    val controlUnit: ControlUnit = new ControlUnit(sensors)
     val scanner: Scanner = new Scanner(System.in)
     var input: String = ""
     while (input != EXIT) {
       println("Type \"poll\" to poll all sensors once or \"exit\" to exit")
       input = scanner.nextLine
       if (input == POLL) {
-        controlUnit.pollSensors()
+        controlUnit.pollSensors
       }
     }
   }
