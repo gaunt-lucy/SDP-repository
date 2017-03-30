@@ -78,12 +78,12 @@ object Funcs {
    * @return the final valued.
    */
   def foldLeft[A,B](ls: List[A], z: B)(f: (B, A) => B): B = {
+
     ls match {
-      case head::tail => f(z, head),foldLeft(tail,z)(head))
       case Nil => z
+      case head :: tail => foldLeft(tail, f(z, head))(f)
     }
   }
-
 
   /**
     * Use your implementation of foldLeft to implement these functions:
@@ -97,15 +97,43 @@ object Funcs {
     * the sublists into one long list. For example, flatten(List(List(1,2,3),
     * List(4,5,6))) produces List(1,2,3,4,5,6).
     */
-  def sum(ls: List[Double]): Double = ???
+  def sum(ls: List[Double]): Double = {
+    ls match {
+      case Nil => throw new IllegalArgumentException("List is empty.")
+      case x::xs => foldLeft(xs, x)(_ + _)
+    }
+  }
 
-  def product(ls: List[Double]): Double = ???
+  def product(ls: List[Double]): Double = {
+    ls match {
+      case Nil => throw new IllegalArgumentException("List is empty.")
+      case x::xs => foldLeft(xs, x)(_ * _)
+    }
+  }
 
-  def length[A](ls: List[A]): Int = ???
+  def length[A](ls: List[A]): Int = {
+    val sum = 1
+    ls match {
+      case Nil => 0
+      case x::xs => foldLeft(xs, sum)((sum,_) => sum + 1)
+    }
+  }
 
-  def reverse[A](ls: List[A]): List[A] = ???
+  def reverse[A](ls: List[A]): List[A] = {
+    val acc = List[A]()
+    ls match {
+      case Nil => acc
+      case x :: xs => foldLeft(ls, acc)((x, acc) => acc :: x)
+    }
+  }
 
-  def flatten[A](ls: List[List[A]]): List[A] = ???
+  def flatten[A](ls: List[List[A]]): List[A] = {
+    val acc = List[A]()
+    ls match {
+      case Nil => acc
+      case x :: xs => foldLeft(ls, acc)((x, acc) => x :: acc)
+    }
+  }
 
   // MAP AND FILTER
 

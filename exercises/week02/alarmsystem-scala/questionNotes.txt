@@ -1,0 +1,9 @@
+AlarmSystem - Exercises
+
+Question 3 - pollSensors method responsible for creating sensors and polling each one in turn and printing the results
+
+Question 5 - pollSensors method now only responsible for polling sensors and printing results, no need to create sensors
+
+Question 6 - the getBatteryPercent is redundant for the new use cases because neither sensor requires battery power
+
+Question 7 - Principle violated is LSP; to resolve, remove redundant method from trait definition; add getBatteryPercentage method only to those sensors that need it. 

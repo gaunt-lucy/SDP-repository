@@ -31,8 +31,12 @@ class Translator(fileName: String) {
 
 //        val clsParams = cons.getParameterTypes()
         // new instance, array of fields (build array of fields)
-
-
+//      val args = Array[String]()
+//      for (field <- fields) {
+//        if (scala.util.Try(field.toInt).isFailure){
+//          args :+ field
+//        }
+//      }
 
         fields(1) match {
           case ADD =>
