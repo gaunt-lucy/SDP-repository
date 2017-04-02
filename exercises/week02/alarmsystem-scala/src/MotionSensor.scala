@@ -1,7 +1,7 @@
 /**
   * Created by Lucy on 19/03/2017.
   */
-class MotionSensor extends Sensor {
+class MotionSensor extends SecuritySensor {
 
   override def isTriggered = {
     val r = 15
@@ -17,5 +17,4 @@ class MotionSensor extends Sensor {
 
   override def getSensorType = "Motion sensor"
 
-  override def getSensorCategory = "Security"
 }

@@ -1,5 +1,5 @@
 
-class FireSensor extends Sensor {
+class FireSensor extends HazardSensor {
   var batteryPercent = 100.00
 
   override def isTriggered: Boolean = {
@@ -26,5 +26,4 @@ class FireSensor extends Sensor {
 
   }
 
-  override def getSensorCategory = "Hazard"
 }

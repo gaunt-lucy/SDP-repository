@@ -1,5 +1,6 @@
 import java.io.IOException
 import java.util.Scanner
+import scala.collection.mutable.ListBuffer
 
 object App {
   private val EXIT: String = "exit"
@@ -9,7 +10,7 @@ object App {
   def main(args: Array[String]) {
     val sensorFactory = new SensorFactory
     val sensors = sensorFactory.getSensors
-    val controlUnit: ControlUnit = new ControlUnit(sensors)
+    val controlUnit: ControlUnit = new ControlUnit(sensors.asInstanceOf[ListBuffer[Sensor]])
     val scanner: Scanner = new Scanner(System.in)
     var input: String = ""
     while (input != EXIT) {

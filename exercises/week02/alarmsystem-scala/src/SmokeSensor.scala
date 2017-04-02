@@ -1,4 +1,4 @@
-class SmokeSensor extends Sensor {
+class SmokeSensor extends HazardSensor {
   val counter = 0
   var batteryPercent = 100.00
 
@@ -23,5 +23,4 @@ class SmokeSensor extends Sensor {
     batteryPercent
   }
 
-  override def getSensorCategory = "Hazard"
 }

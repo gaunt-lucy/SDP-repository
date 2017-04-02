@@ -1,0 +1,5 @@
+[0m[[0minfo[0m] [0m[32mcaseCounterTestSuite:[0m[0m
+[0m[[0minfo[0m] [0m[32m- Tests new Counter return value[0m[0m
+[0m[[0minfo[0m] [0m[32m- increments counter with and without value[0m[0m
+[0m[[0minfo[0m] [0m[32m- decrements counter with value and without value[0m[0m
+[0m[[0minfo[0m] [0m[32m- tests combined methods dec and inc on Counter class[0m[0m

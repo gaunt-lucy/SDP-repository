@@ -43,15 +43,12 @@ object Funcs {
     * @param n  : Int the number of elements to drop.
     * @return a list with the first n elements of ls removed, or an empty list.
     */
-  def drop[A](ls: List[A], n: Int): List[A] = ??? // TODO
-//      var count = n
-//      ls match {
-//        case l :: ls if (ls.size <= n && n >0) => ls.tail
-//        case l :: ls if (ls.size > n) => List[A]()
-//      }
-//    count = count - 1
-//    ls.drop(count)
-//    }
+  def drop[A](ls: List[A], n: Int): List[A] = {
+      ls match {
+        case l :: ls if (ls.size <= n && n >0) => drop(ls,n-1)
+        case l :: ls if (ls.size > n) => List[A]()
+      }
+    }
   /**
     * init takes a list and removes the last element.
     * Like tail, init(Nil) throws an IllegalArgumentException.
@@ -127,13 +124,13 @@ object Funcs {
     }
   }
 
-  def flatten[A](ls: List[List[A]]): List[A] = {
-    val acc = List[A]()
-    ls match {
-      case Nil => acc
-      case x :: xs => foldLeft(ls, acc)((x, acc) => x :: acc)
-    }
-  }
+  def flatten[A](ls: List[List[A]]): List[A] = ??? //{
+//    val acc = List[A]()
+//    ls match {
+//      case Nil => acc
+//      case x :: xs => foldLeft(ls, acc)((x, acc) => x :: acc)
+//    }
+//  }
 
   // MAP AND FILTER
 
