@@ -44,11 +44,14 @@ object Funcs {
     * @return a list with the first n elements of ls removed, or an empty list.
     */
   def drop[A](ls: List[A], n: Int): List[A] = {
-      ls match {
-        case l :: ls if (ls.size <= n && n >0) => drop(ls,n-1)
-        case l :: ls if (ls.size > n) => List[A]()
+    ls match {
+      case Nil => List[A]()
+      case _ :: xs => n match {
+        case 1 => xs
+        case _ => drop(xs, n - 1)
       }
     }
+  }
   /**
     * init takes a list and removes the last element.
     * Like tail, init(Nil) throws an IllegalArgumentException.
@@ -124,13 +127,14 @@ object Funcs {
     }
   }
 
-  def flatten[A](ls: List[List[A]]): List[A] = ??? //{
-//    val acc = List[A]()
-//    ls match {
-//      case Nil => acc
-//      case x :: xs => foldLeft(ls, acc)((x, acc) => x :: acc)
-//    }
-//  }
+  // flatten passes test but is not implemented with foldLeft.
+
+  def flatten[A](ls: List[List[A]]): List[A] = {
+    ls match {
+      case Nil => List[A]()
+      case x::xs => x ::: flatten(xs)
+    }
+  }
 
   // MAP AND FILTER
 
@@ -143,7 +147,12 @@ object Funcs {
     * @param f  : A => B the function to be applied to each element of the input.
     * @return the resulting list from applying f to each element of ls.
     */
-  def map[A, B](ls: List[A])(f: A => B): List[B] = ???
+  def map[A, B](ls: List[A])(f: A => B): List[B] = {
+    ls match {
+      case Nil => List[B]()
+      case x::xs => f(x) :: xs.map(f)
+    }
+  }
 
   /**
     * filter removes all elements from a list for which a given predicate
@@ -154,7 +163,15 @@ object Funcs {
     * @param f  : A => Boolean the predicate
     * @return the filtered list.
     */
-  def filter[A](ls: List[A])(f: A => Boolean): List[A] = ???
+  def filter[A](ls: List[A])(f: A => Boolean): List[A] = {
+    ls match {
+      case Nil => List[A]()
+      case x::xs => f(x) match {
+        case true => x :: xs.filter(f)
+        case false => xs.filter(f)
+      }
+    }
+  }
 
   /**
     * flatMap is very similar to map. However, the function returns a List,
@@ -165,7 +182,12 @@ object Funcs {
     * @return a List[B] containing the flattened results of applying f to all
     *         elements of ls.
     */
-  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ???
+  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = {
+    ls match {
+      case Nil => List[B]()
+      case x::xs => flatten(f(x) :: xs.map(f))
+    }
+  }
 
   // COMBINING FUNCTIONS
 
@@ -179,19 +201,33 @@ object Funcs {
     *           length is greater than 0.
     * @return the average value of the largest values in the pairs.
     */
-  def maxAverage(ls: List[(Double, Double)]): Double = ???
+  def maxAverage(ls: List[(Double, Double)]): Double = {
+    def f (b: (Double, Double)): Double = if (b._1 < b._2) b._2 else b._1
+    ls match {
+      case Nil => throw new IllegalArgumentException("There is no valid list")
+      case x::xs => foldLeft(ls.map(f), 0.0)(_ + _)/ ls.length
+    }
+
+  }
 
   /**
     * variance takes a List[Double] and calculates the squared distance
     * of each value from the mean. This is the *variance*, as used in
     * statistics.
-    * 1) Find the mean M of the input.
-    *
+    * 1) Find the mean M of the input
     * 2) For each value V in the input, calculate (V - M)^2.
     * 3) Find the variance.
     * Which methods that we've already defined can you use? (At least one!)
     * @param ls     : List[Double] a list of values, whose length is greater than 0.
     * @param return the variance of the input.
     */
-  def variance(ls: List[Double]): Double = ???
+  def variance(ls: List[Double]): Double = {
+    val m = foldLeft(ls,0.0)(_ + _)/ls.length
+    def f (x: Double) = (x-m)*(x-m)
+    ls match {
+      case Nil => throw new IllegalArgumentException("No valid input")
+      case x::xs => foldLeft(ls.map(f),0.0)(_ + _)/ls.length
+    }
+
+  }
 }
