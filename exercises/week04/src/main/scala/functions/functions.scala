@@ -1,5 +1,7 @@
 package functions
 
+import scala.annotation.tailrec
+
 object Funcs {
 
   // FUNCTIONAL BASICS:
@@ -43,6 +45,7 @@ object Funcs {
     * @param n  : Int the number of elements to drop.
     * @return a list with the first n elements of ls removed, or an empty list.
     */
+  @tailrec
   def drop[A](ls: List[A], n: Int): List[A] = {
     ls match {
       case Nil => List[A]()

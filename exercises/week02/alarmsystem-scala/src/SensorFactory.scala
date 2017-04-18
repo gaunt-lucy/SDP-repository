@@ -5,19 +5,18 @@ import scala.collection.mutable.ListBuffer
   */
 class SensorFactory {
 
-  def getSensors: ListBuffer[HazardSensor] = {
-    val sensors = new ListBuffer[HazardSensor]() //Create an empty instance of listBuffer object
-    sensors += new FireSensor() // Creates new FireSensor, adds to listBuffer
-    sensors += new SmokeSensor() // Creates new instance of SmokeSensor, adds to listBuffer
+  def getHazSensors: ListBuffer[Sensor] = {
+    val hazSensors = new ListBuffer[Sensor]() //Create an empty instance of listBuffer object
+    hazSensors += new FireSensor() // Creates new FireSensor, adds to listBuffer
+    hazSensors += new SmokeSensor() // Creates new instance of SmokeSensor, adds to listBuffer
 
-    sensors //return listBuffer of sensors
+    hazSensors //return listBuffer of sensors
   }
+    def getSecSensors: ListBuffer[SecuritySensor] = {
+      val secSensors = new ListBuffer[SecuritySensor]()
+      secSensors += new MotionSensor() //Creates new instance of motion Sensor, adds to listBuffer
 
-//  def getSecSensors: ListBuffer[Sensor] = {
-//    val sensors = new ListBuffer[Sensor]() //Create an empty instance of listBuffer object
-//    sensors += new MotionSensor() // Creates new FireSensor, adds to listBuffer
-//
-//    sensors //return listBuffer of sensors
-//  }
+      secSensors //return listBuffer of sensors
+  }
 
 }

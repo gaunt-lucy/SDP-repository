@@ -1,0 +1,47 @@
+Question 1.
+    a) The Strategy Design Pattern provides an interface which abstractly encapsulates the implementation of
+    multiple (interchangeable) behaviours available to a particular client.
+    b) When you have identified behaviours which have a common signature and it would be advantageous
+    for the client to access this set of behaviours through a single 'flex point'
+
+Question 3. When is it appropriate to use the Abstract Factory pattern?
+    Where platform independence is desirable/causing pain; where you need to create families of related objects
+    without relying on the 'new' operator or specifying concrete classes.
+
+Question 5. Comment on the given statement with ref to modularity and construction bloat.
+    The statement given suggests that the processes of instantiating and initialising object components should be
+    kept within the object itself, as part of the constructor. However, it fails to recognise that this is normally
+    not efficient with complex objects, which may have different representations depending on the way the construction
+    processes are implemented. Keeping all of these processes inside the object can lead to construction bloat.
+    Similarly, keeping everything in one object reduces the modularity of the object, making it harder to change
+    and extend in the future. This problem is what the Builder pattern is intended to solve.
+
+Question 7.
+    a) Provides a simplified interface for multiple interfaces in a system.
+    b) When you need to make a complex, multi-interface system easier to use.
+
+Question 8.
+    The Bridge design pattern can be used where there is a danger of exponentially growing inheritance hierarchy; it
+    allows an abstraction to be separated from implementation and varied independently. It can be useful if you want
+    to share an implementation amongst multiple objects (e.g. one version for platform-dependent, one for platform-
+    independent implementations).
+
+Question 11.
+    a) The Composite pattern represents objects in tree structures, allowing clients to treat individual and composite
+    objects in the same way.
+    b) You want a composite pattern when you have containers that contain items, which could themselves be containers;
+    the 'has a' relationship within an 'is a' hierarchy
+    c) The participants in a composite pattern are the:
+    - Client
+        - uses the objects in the composition through the interface
+    - Composite
+        - holds child components
+        - sets behaviour for components with children
+        - implements child-related operations to the Component interface
+    - Component
+        - declares the interface
+        - defines and implements default behaviour
+        - defines interface for accessing child components
+    - Leaf (node with no children; not a composite)
+        - single objects
+

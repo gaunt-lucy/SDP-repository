@@ -54,4 +54,4 @@ class XpayToPayDAdapter (val payD: PayD) extends Xpay {
     payD.setTotalAmount(amount)
   }
 }
-}
+

@@ -3,7 +3,7 @@ package observer
 import scala.collection.mutable.ListBuffer
 
 class CommentaryObject(var subscribers: ListBuffer[Observer], val title: String) extends Subject {
-  def subscribeObserver(observer: Observer) = ???
+  def subscribeObserver(observer: Observer): Unit = subscribers :+ observer
 
   def unSubscribeObserver(observer: Observer) = ???
 

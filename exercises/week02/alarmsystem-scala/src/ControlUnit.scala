@@ -5,7 +5,7 @@ object ControlUnit
 class ControlUnit (sensors: ListBuffer[Sensor]) {
   val theseSensors = sensors
 
-  def pollSensors{
+  def pollSensors = {
     for (sensor <- theseSensors) { // For each sensor in the listBuffer:
       if (sensor.isTriggered) { //print if isTriggered == True
         System.out.println("A " + sensor.getSensorType + " sensor was triggered at " + sensor.getLocation)
