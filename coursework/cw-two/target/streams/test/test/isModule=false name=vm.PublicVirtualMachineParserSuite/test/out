@@ -1,0 +1,4 @@
+[0m[[0minfo[0m] [0m[32mPublicVirtualMachineParserSuite:[0m[0m
+[0m[[0minfo[0m] [0m[32m- [8] vm parser should parse programs/p01.vm a file into bytecode[0m[0m
+[0m[[0minfo[0m] [0m[32m- [8] vm parser should parse programs/p03.vm a file into bytecode[0m[0m
+[0m[[0minfo[0m] [0m[32m- [4] vm parser should detect a program with invalid bytecode[0m[0m

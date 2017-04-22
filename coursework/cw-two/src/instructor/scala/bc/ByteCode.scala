@@ -26,7 +26,8 @@ trait ByteCodeValues {
   /**
     * A map from bytecode names to a unique byte that represents them.
     */
-  val bytecode = names.zip(1.to(names.length).map(_.toByte)).toMap
+    val bytecode = names.zip(1.to(names.length).map(_.toByte)).toMap
+
 }
 
 /**
@@ -57,3 +58,17 @@ trait ByteCode extends ByteCodeValues {
     */
   def execute(vm: VirtualMachine): VirtualMachine
 }
+
+
+//
+//class ByteCode(val code:Byte, val op:Int = null) {
+//
+//  private val codebyte = bytecode map  {_.swap}
+//
+//
+//
+//  def execute(vm: VirtualMachine): VirtualMachine = codebyte(byte) match {
+//     "iadd" =>
+//  }
+//
+//}

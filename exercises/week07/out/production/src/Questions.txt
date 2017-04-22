@@ -1,0 +1,32 @@
+Question 2.
+    a) One of the criteria for using a singleton is that lazy initialization would be desirable/necessary. In
+    Scala, the 'Object' type natively implements the Singleton pattern lazily. E.g.:
+
+    -------
+    scala> object Example { println("Hello, World") }
+    defined module Example
+
+    scala> Example
+    Hello, World
+    res1: Example.type = Example$@37c8ccf4
+
+    scala> Example
+    res2: Example.type = Foo$@37c8ccf4
+    -------
+    Sometimes, it is appropriate to have a Singleton initialized immediately, for example if you are sure that
+    the object will definitely be used immediately by the system. In this case it may be eagerly-initiated.
+    In Scala, this can be achieved with a sealed case class:
+
+    -------
+    scala> sealed case class Singleton()
+    class Singleton
+
+    b)
+
+
+
+
+
+
+
+

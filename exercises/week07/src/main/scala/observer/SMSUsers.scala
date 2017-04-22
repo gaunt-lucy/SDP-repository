@@ -1,9 +1,9 @@
 package observer
 
 case class SMSUsers(s: Subject, msg: String) extends Observer {
-  def update(desc: String) = ???
+  def update(desc: String) = s.notifyObservers()
 
-  def subscribe() = ???
+  def subscribe() = s.subscribeObserver(this)
 
-  def unSubscribe() = ???
+  def unSubscribe() = s.subscribeObserver(this)
 }

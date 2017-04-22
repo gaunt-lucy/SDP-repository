@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cw-one.iml" filepath="$PROJECT_DIR$/.idea/cw-one.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SML_Scala/SML_Scala.iml" filepath="$PROJECT_DIR$/SML_Scala/SML_Scala.iml" />
     </modules>
   </component>
 </project>

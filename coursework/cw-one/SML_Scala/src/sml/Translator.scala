@@ -1,5 +1,7 @@
 package sml
 
+import scala.collection.mutable.ListBuffer
+
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  */
@@ -25,37 +27,37 @@ class Translator(fileName: String) {
       if (fields.length > 0) {
         labels.add(fields(0))
 
-        // TODO Add reflection to make SML extensible
-//        val cls = Class.forName(fields(1).capitalize + "Instruction")// package name
-//        val cons = cls.getConstructors()
-
-//        val clsParams = cons.getParameterTypes()
-        // new instance, array of fields (build array of fields)
-//      val args = Array[String]()
-//      for (field <- fields) {
-//        if (scala.util.Try(field.toInt).isFailure){
-//          args :+ field
-//        }
-//      }
-
-        fields(1) match {
-          case ADD =>
-            program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case LIN =>
-            program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
-          case SUB =>
-            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case MUL =>
-            program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case DIV =>
-            program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case OUT =>
-            program = program :+ OutInstruction(fields(0), fields(2).toInt)
-          case BNZ =>
-            program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
-          case x =>
-            println(s"Unknown instruction $x")
+//        //TODO Add reflection to make SML extensible
+        val cls = Class.forName(fields(1).capitalize + "Instruction")
+        //constructs class name
+        val cons = cls.getConstructor()
+        var args = ListBuffer[String]()
+        for (field <- fields) {
+          if (scala.util.Try(field.toInt).isFailure) {
+            args += field
+          }
+          program :+ cons.newInstance(args.toArray)
         }
+
+
+//                fields(1) match {
+//                  case ADD =>
+//                    program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//                  case LIN =>
+//                    program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
+//                  case SUB =>
+//                    program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//                  case MUL =>
+//                    program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//                  case DIV =>
+//                    program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//                  case OUT =>
+//                    program = program :+ OutInstruction(fields(0), fields(2).toInt)
+//                  case BNZ =>
+//                    program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
+//                  case x =>
+//                    println(s"Unknown instruction $x")
+//                }
       }
     }
     new Machine(labels, program)
