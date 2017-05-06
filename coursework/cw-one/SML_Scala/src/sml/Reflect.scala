@@ -1,17 +1,24 @@
-///**
-//  * Created by Lucy on 19/04/2017.
-//  */
-//package sml
-//
-//import scala.reflect.runtime.universe
-//
-//class Reflect (className: String) {
-//
-//  val runtimeMirror: universe.Mirror = universe.runtimeMirror(getClass.getClassLoader)
-//
-//  val classSymbol: universe.ClassSymbol = runtimeMirror.classSymbol(Class.forName(className))
-//
-//  val classMirror: universe.ClassMirror = runtimeMirror.reflectClass(classSymbol)
-//
-//  val construct = universe.typeOf[].decl(universe.termNames.CONSTRUCTOR).asMethod
+//// ******* REFLECTION *******
+//// Construct class name and get class of instruction
+//val instrType = fields(1)
+//val className = "sml." + instrType.capitalize + "Instruction"
+//try {
+//  val newInstr = Class.forName(className)
+//  // Get class's default constructor
+//  val cons = newInstr.getConstructors()(0)
+//  // Get arguments for constructor
+//  var args = new Array[Object](fields.length)
+//  for (i <- 0 until fields.length) {
+//    Try(fields(i).toInt) match {
+//      case Success(x) => args(i) = new Integer(x)
+//      case Failure(e) => args(i) = fields(i)
+//    }
 //  }
+//  // Invoke constructor and add instruction to program
+//  val instruction = cons.newInstance(args: _*).asInstanceOf[Instruction]
+//  program = program :+ instruction
+//} catch {
+//  case ex: ClassNotFoundException => println(s"Unknown instruction $instrType")
+//}
+//}
+//}

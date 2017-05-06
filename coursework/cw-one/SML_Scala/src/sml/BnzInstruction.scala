@@ -3,7 +3,7 @@ package sml
 /**
   * Created by Lucy on 10/03/2017.
   */
-class BnzInstruction (label: String, opcode: String, register: Int, nextLine: String)
+case class BnzInstruction (label: String, opcode: String, register: Int, nextLine: String)
   extends Instruction(label, opcode) {
 
   override def execute(m: Machine) = {
